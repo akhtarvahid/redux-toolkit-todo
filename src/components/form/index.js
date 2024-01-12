@@ -5,9 +5,12 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../reducers/userDetailSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [user, setUser] = React.useState({
         name: '',
         email: '',
@@ -22,7 +25,8 @@ export default function Form() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        dispatch(createUser(user))
+        dispatch(createUser(user));
+        navigate('/todo-list');
     }
 
     console.log(user)
