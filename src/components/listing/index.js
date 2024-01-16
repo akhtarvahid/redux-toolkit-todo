@@ -4,17 +4,20 @@ import { fetchUser } from '../../reducers/userDetailSlice';
 import List from '../List';
 
 export default function Listing() {
-    const dispatch = useDispatch();
-    const data = useSelector(state => state.users);
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.users);
 
-    useEffect(() => {
-       dispatch(fetchUser())
-    }, [])
+  useEffect(() => {
+    dispatch(fetchUser())
+  }, [])
 
-    console.log('user::', data)
+  console.log('user::', data)
+  if(data.loading) {
+    return <h1>Loading...</h1>
+  }
   return (
     <div>
-        <List todos={data.users} />
+      <List todos={data.users} />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import './App.css';
 import Form from './components/form';
 import Header from './components/header';
 import Listing from './components/listing';
+import ListView from './components/ListView';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Form />} />
           <Route exact path='/todo-list' element={<Listing />} />
+          <Route exact path='/todo-list/:id' element={<ListView />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,13 +1,27 @@
 import React from 'react'
+import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function List({ todos }) {
+    const navigate = useNavigate();
     return (
         <div>
-            <ul>
+            <div>
                 {todos.map(todo =>
-                    <li key={todo.id}>{todo.name}: {todo.company}</li>
+                    <div key={todo.id} className='todo-row'>
+                        <img src={todo.avatar} alt='avatar' />
+                        <div>
+                            <h3>{todo.name}</h3>
+                            <div>{todo.company}</div>
+                        </div>
+                        <div>
+                            <button onClick={() => navigate(`/todo-list/${todo.id}`)}>View</button>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
                 )}
-            </ul>
+            </div>
         </div>
     )
 }
