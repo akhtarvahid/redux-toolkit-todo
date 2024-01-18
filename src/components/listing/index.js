@@ -17,7 +17,7 @@ export default function Listing() {
   }
   return (
     <div>
-      <List todos={data.users} />
+      <List users={data.users} />
     </div>
   )
 }

@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Link from '@mui/material/Link';
+import { useSelector } from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -64,6 +65,8 @@ export default function Header() {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const users = useSelector(state => state.users?.users);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -182,7 +185,7 @@ export default function Header() {
                         sx={{ display: { xs: 'none', sm: 'block' } }}>Create</Typography>
                     </Link>
                     <Link href="/todo-list" underline="none" color='white' marginLeft={2}>
-                        <Typography sx={{ minWidth: 100 }}>Posts</Typography>
+                        <Typography sx={{ minWidth: 100 }}>{`Posts (${users && users.length})`}</Typography>
                     </Link>
 
 
