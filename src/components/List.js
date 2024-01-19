@@ -2,14 +2,22 @@ import React, { useState } from 'react'
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import ViewModal from './viewModal/ViewModal';
+import { deleteUser } from '../reducers/userDetailSlice';
+import { useDispatch } from 'react-redux';
 
 export default function List({ users }) {
+    const dispatch = useDispatch();
     const [openPopup, setOpenPopup] = useState(false);
     const [selectedUser, setSelectedUSer] = useState({});
     const navigate = useNavigate();
+    const handleClose = ()=> {
+       setOpenPopup(false);
+    }
+
+    console.log(selectedUser)
     return (
         <div>
-            {openPopup && <ViewModal status={openPopup} />}
+            {openPopup && <ViewModal status={openPopup} handleClose={handleClose} />}
             <div>
                 {users.map(user =>
                     <div key={user.id} className='todo-row'>
@@ -21,7 +29,7 @@ export default function List({ users }) {
                         <div>
                             <button onClick={() => [setOpenPopup(true), setSelectedUSer(user)]}>View</button>
                             <button onClick={() => navigate(`/todo-list/${user.id}`)}>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={() => dispatch(deleteUser(user.id))}>Delete</button>
                         </div>
                     </div>
                 )}
