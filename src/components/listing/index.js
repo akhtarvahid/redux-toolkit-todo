@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUser } from '../../reducers/userDetailSlice';
+import { fetchUsers } from '../../reducers/userDetailSlice';
 import List from '../List';
 
 export default function Listing() {
@@ -8,7 +8,7 @@ export default function Listing() {
   const data = useSelector(state => state.users);
 
   useEffect(() => {
-    dispatch(fetchUser())
+    dispatch(fetchUsers())
   }, [])
 
   console.log('user::', data)

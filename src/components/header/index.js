@@ -16,7 +16,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Link from '@mui/material/Link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../../reducers/userDetailSlice';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -59,6 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState(null);
@@ -67,6 +69,10 @@ export default function Header() {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const users = useSelector(state => state.users?.users);
+  
+    React.useEffect(() => {
+      dispatch(fetchUsers())
+    }, [])
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -184,7 +190,7 @@ export default function Header() {
                         <Typography variant="h6" component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}>Create</Typography>
                     </Link>
-                    <Link href="/todo-list" underline="none" color='white' marginLeft={2}>
+                    <Link href="/todos" underline="none" color='white' marginLeft={2}>
                         <Typography sx={{ minWidth: 100 }}>{`Posts (${users && users.length})`}</Typography>
                     </Link>
 

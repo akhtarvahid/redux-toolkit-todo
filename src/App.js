@@ -3,7 +3,7 @@ import './App.css';
 import Form from './components/form';
 import Header from './components/header';
 import Listing from './components/listing';
-import ListView from './components/ListView';
+import Edit from './components/Edit';
 
 function App() {
 
@@ -14,8 +14,8 @@ function App() {
         <Header />
         <Routes>
           <Route exact path='/' element={<Form />} />
-          <Route exact path='/todo-list' element={<Listing />} />
-          <Route exact path='/todo-list/:id' element={<ListView />} />
+          <Route exact path='/todos' element={<Listing />} />
+          <Route exact path='/todos/edit/:id' element={<Edit />} />
         </Routes>
       </BrowserRouter>
     </div>

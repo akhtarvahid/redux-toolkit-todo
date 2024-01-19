@@ -28,7 +28,7 @@ export default function List({ users }) {
                         </div>
                         <div>
                             <button onClick={() => [setOpenPopup(true), setSelectedUSer(user)]}>View</button>
-                            <button onClick={() => navigate(`/todo-list/${user.id}`)}>Edit</button>
+                            <button onClick={() => navigate(`/todos/edit/${user.id}`)}>Edit</button>
                             <button onClick={() => dispatch(deleteUser(user.id))}>Delete</button>
                         </div>
                     </div>

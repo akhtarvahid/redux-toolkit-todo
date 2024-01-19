@@ -26,7 +26,7 @@ export default function Form() {
         e.preventDefault();
 
         dispatch(createUser(user));
-        navigate('/todo-list');
+        navigate('/todos');
     }
 
     console.log(user)
