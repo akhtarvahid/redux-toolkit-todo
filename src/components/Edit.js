@@ -1,7 +1,10 @@
 import React from 'react'
+import Form from './form';
 
 export default function Edit() {
   return (
-    <div>Edit</div>
+    <div>
+      <Form isEdit={true}/>
+    </div>
   )
 }

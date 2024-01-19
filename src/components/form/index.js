@@ -3,23 +3,29 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createUser } from '../../reducers/userDetailSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function Form() {
+export default function Form({ isEdit }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { id } = useParams();
+    const users = useSelector(state => state.users.users);
 
     const [user, setUser] = React.useState({
-        name: '',
-        email: '',
-        location: '',
-        company: ''
+        name: '', email: '', location: '', company: ''
     });
 
+    React.useEffect(() => {
+        if (isEdit) {
+            const filteredUser = users.find(user => user.id === id);
+            setUser(filteredUser)
+        }
+    }, [id, users, isEdit])
+
     const handleForm = e => {
-        setUser((prevUser) => ({...prevUser, [e.target.name]: e.target.value}))
+        setUser((prevUser) => ({ ...prevUser, [e.target.name]: e.target.value }))
     }
 
     const handleSubmit = e => {
@@ -29,19 +35,19 @@ export default function Form() {
         navigate('/todos');
     }
 
-    console.log(user)
+    console.log('formValues', user)
     return (
         <Box
             sx={{
                 width: 500,
                 maxWidth: '100%',
             }}
-            
+
         >
-            <TextField fullWidth label="name" name='name' id="fullWidth" onChange={handleForm}/>
-            <TextField fullWidth label="email" name='email' id="fullWidth" onChange={handleForm} />
-            <TextField fullWidth label="location" name='location' id="fullWidth" onChange={handleForm} />
-            <TextField fullWidth label="company" name='company' id="fullWidth" onChange={handleForm} />
+            <TextField fullWidth label="name" name='name' id="fullWidth" onChange={handleForm} value={user?.name} />
+            <TextField fullWidth label="email" name='email' id="fullWidth" onChange={handleForm} value={user?.email} />
+            <TextField fullWidth label="location" name='location' id="fullWidth" onChange={handleForm} value={user?.location} />
+            <TextField fullWidth label="company" name='company' id="fullWidth" onChange={handleForm} value={user?.company} />
             <Button variant="contained" endIcon={<SendIcon />} onClick={handleSubmit}>
                 Submit
             </Button>

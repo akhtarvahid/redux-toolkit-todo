@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function Header() {
+export default function NavBar() {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -72,7 +72,7 @@ export default function Header() {
   
     React.useEffect(() => {
       dispatch(fetchUsers())
-    }, [])
+    }, [dispatch])
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);

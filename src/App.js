@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Form from './components/form';
-import Header from './components/header';
+import NavBar from './components/navbar';
 import Listing from './components/listing';
 import Edit from './components/Edit';
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Header />
+        <NavBar />
         <Routes>
           <Route exact path='/' element={<Form />} />
           <Route exact path='/todos' element={<Listing />} />

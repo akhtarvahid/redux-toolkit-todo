@@ -9,7 +9,7 @@ export default function Listing() {
 
   useEffect(() => {
     dispatch(fetchUsers())
-  }, [])
+  }, [dispatch])
 
   console.log('user::', data)
   if(data.loading) {
