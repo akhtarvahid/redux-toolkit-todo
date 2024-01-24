@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../../reducers/userDetailSlice';
+import { createUser, updateUser } from '../../reducers/userDetailSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function Form({ isEdit }) {
@@ -30,12 +30,14 @@ export default function Form({ isEdit }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-
-        dispatch(createUser(user));
+        if (isEdit) {
+            dispatch(updateUser(user))
+        } else {
+            dispatch(createUser(user));
+        }
         navigate('/todos');
     }
 
-    console.log('formValues', user)
     return (
         <Box
             sx={{

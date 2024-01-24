@@ -20,7 +20,7 @@ export default function List({ users }) {
             {openPopup && <ViewModal status={openPopup} handleClose={handleClose} />}
             <div>
                 {users.map(user =>
-                    <div key={user.id} className='todo-row'>
+                    <div key={`${user.id} ${user.name}`} className='todo-row'>
                         <img src={user.avatar} alt='avatar' />
                         <div>
                             <h3>{user.name}</h3>
