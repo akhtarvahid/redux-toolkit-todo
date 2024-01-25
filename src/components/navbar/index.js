@@ -17,7 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Link from '@mui/material/Link';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../reducers/userDetailSlice';
+import { fetchUsers, searchUser } from '../../reducers/userDetailSlice';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -61,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function NavBar() {
     const dispatch = useDispatch();
+    const [searchText, setSearchText] = React.useState('');
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState(null);
@@ -73,6 +74,10 @@ export default function NavBar() {
     React.useEffect(() => {
       dispatch(fetchUsers())
     }, [dispatch])
+
+    React.useEffect(() => {
+        dispatch(searchUser(searchText))
+      }, [dispatch, searchText])
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -195,7 +200,7 @@ export default function NavBar() {
                     </Link>
 
 
-                    <Search>
+                    <Search onChange={(e) => dispatch(searchUser(setSearchText(e.target.value)))}>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>

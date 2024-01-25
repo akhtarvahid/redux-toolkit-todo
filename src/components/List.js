@@ -5,7 +5,7 @@ import ViewModal from './viewModal/ViewModal';
 import { deleteUser } from '../reducers/userDetailSlice';
 import { useDispatch } from 'react-redux';
 
-export default function List({ users }) {
+export default function List({ users, searchedData }) {
     const dispatch = useDispatch();
     const [openPopup, setOpenPopup] = useState(false);
     const [selectedUser, setSelectedUSer] = useState({});
@@ -14,12 +14,13 @@ export default function List({ users }) {
        setOpenPopup(false);
     }
 
-    console.log(selectedUser)
     return (
         <div>
             {openPopup && <ViewModal status={openPopup} handleClose={handleClose} />}
             <div>
-                {users.map(user =>
+                {users
+                .filter(user => user.name.toLowerCase().startsWith(searchedData?.toLowerCase()))
+                .map(user =>
                     <div key={`${user.id} ${user.name}`} className='todo-row'>
                         <img src={user.avatar} alt='avatar' />
                         <div>

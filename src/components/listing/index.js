@@ -17,7 +17,7 @@ export default function Listing() {
   }
   return (
     <div>
-      <List users={data.users} />
+      <List users={data.users} searchedData={data.searchedData} />
     </div>
   )
 }
