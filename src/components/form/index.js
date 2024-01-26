@@ -46,6 +46,7 @@ export default function Form({ isEdit }) {
             }}
 
         >
+
             <TextField fullWidth label="name" name='name' id="fullWidth" onChange={handleForm} value={user?.name} />
             <TextField fullWidth label="email" name='email' id="fullWidth" onChange={handleForm} value={user?.email} />
             <TextField fullWidth label="location" name='location' id="fullWidth" onChange={handleForm} value={user?.location} />
