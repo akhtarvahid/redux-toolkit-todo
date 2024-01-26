@@ -7,7 +7,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import List from '../List';
 
 export default function Listing() {
-  const [isUserResident, setIsUserResident] = useState('');
+  const [isUserResident, setIsUserResident] = useState(null);
+  const [sortedLists, setSortedLists] = useState([]);
   const dispatch = useDispatch();
   const data = useSelector(state => state.users);
 
@@ -15,13 +16,21 @@ export default function Listing() {
     dispatch(fetchUsers())
   }, [dispatch])
 
+  useEffect(() => {
+    if (isUserResident === 'resident') {
+      const residentList = data.users.filter(user => user.isResident && isUserResident === 'resident');
+      setSortedLists(residentList);
+    } else {
+      const nonResident = data.users.filter(user => !user.isResident && isUserResident === 'non-resident');
+      setSortedLists(nonResident);
+    }
+  }, [data.users, isUserResident])
 
-  const sortedList = data.users.filter(user => user.isResident === isUserResident);
 
   if (data.loading) {
     return <h1>Loading...</h1>
   }
-  
+
   return (
     <div>
       <RadioGroup
@@ -33,7 +42,7 @@ export default function Listing() {
         <FormControlLabel value='resident' control={<Radio />} label="Resident" />
         <FormControlLabel value='non-resident' control={<Radio />} label="Non-resident" />
       </RadioGroup>
-      <List users={sortedList?.length > 0 ? sortedList : data.users} searchedData={data.searchedData} />
+      <List users={sortedLists?.length > 0 ? sortedLists : data.users} searchedData={data.searchedData} />
     </div>
   )
 }

@@ -26,7 +26,7 @@ export default function List({ users, searchedData }) {
                         <div>
                             <h3>{user.name}</h3>
                             <div>{user.company}</div>
-                            <p>{user.isResident}</p>
+                            <p>{user.isResident ? 'Resident' : 'Non-Resident'}</p>
                         </div>
                         <div>
                             <button onClick={() => [setOpenPopup(true), setSelectedUSer(user)]}>View</button>
