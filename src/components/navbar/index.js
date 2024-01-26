@@ -70,14 +70,14 @@ export default function NavBar() {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const users = useSelector(state => state.users?.users);
-  
+
     React.useEffect(() => {
-      dispatch(fetchUsers())
+        dispatch(fetchUsers())
     }, [dispatch])
 
     React.useEffect(() => {
         dispatch(searchUser(searchText))
-      }, [dispatch, searchText])
+    }, [dispatch, searchText])
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -193,7 +193,7 @@ export default function NavBar() {
                     </Typography>
                     <Link href="/" underline="none" color='white' marginLeft={2}>
                         <Typography variant="h6" component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}>Create</Typography>
+                            sx={{ display: { xs: 'none', sm: 'block' } }}>Create</Typography>
                     </Link>
                     <Link href="/todos" underline="none" color='white' marginLeft={2}>
                         <Typography sx={{ minWidth: 100 }}>{`Posts (${users && users.length})`}</Typography>

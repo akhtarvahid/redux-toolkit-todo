@@ -7,9 +7,8 @@ import Edit from './components/Edit';
 
 function App() {
 
-
   return (
-    <div>
+    <>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -18,7 +17,7 @@ function App() {
           <Route exact path='/todos/edit/:id' element={<Edit />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

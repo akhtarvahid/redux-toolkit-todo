@@ -15,12 +15,13 @@ export default function Listing() {
     dispatch(fetchUsers())
   }, [dispatch])
 
-  console.log('user::', data, isUserResident)
+
+  const sortedList = data.users.filter(user => user.isResident === isUserResident);
+
   if (data.loading) {
     return <h1>Loading...</h1>
   }
-  const sortedList = data.users.filter(user => user.isResident === isUserResident);
-
+  
   return (
     <div>
       <RadioGroup
