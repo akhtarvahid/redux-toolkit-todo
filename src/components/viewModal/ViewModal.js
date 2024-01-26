@@ -19,7 +19,6 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export default function ViewModal({ status, handleClose, selectedUser }) {
-console.log('selected: ', selectedUser);
 
   return (
     <React.Fragment>

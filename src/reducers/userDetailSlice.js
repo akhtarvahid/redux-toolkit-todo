@@ -55,7 +55,6 @@ export const createUser = createAsyncThunk('createUser', async (data, { rejectWi
 
 // Update user
 export const updateUser = createAsyncThunk('updateUser', async (data, { rejectWithValue }) => {
-    console.log(data)
     const response = fetch(`${API_URL}/${data.id}`, {
         method: 'PUT',
         headers: {
@@ -66,7 +65,6 @@ export const updateUser = createAsyncThunk('updateUser', async (data, { rejectWi
 
     try {
         const result = (await response).json();
-        console.log(result)
 
         return result;
     } catch (err) {
