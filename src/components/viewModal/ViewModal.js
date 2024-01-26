@@ -9,7 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 const Transition = React.forwardRef(function Transition(
   props,
@@ -55,10 +55,17 @@ console.log('selected: ', selectedUser);
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {selectedUser.name}
+          </Typography>
+          <Typography gutterBottom variant="div" component="div">
+            <strong>{selectedUser.email}</strong>
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {selectedUser.description}
+          </Typography>
+          <Typography>
+            <FmdGoodIcon />
+            {selectedUser.location}
           </Typography>
         </CardContent>
       </CardActionArea>
