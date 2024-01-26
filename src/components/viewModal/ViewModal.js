@@ -1,13 +1,14 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 
 const Transition = React.forwardRef(function Transition(
@@ -17,7 +18,8 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ViewModal({ status, handleClose }) {
+export default function ViewModal({ status, handleClose, selectedUser }) {
+console.log('selected: ', selectedUser);
 
   return (
     <React.Fragment>
@@ -28,7 +30,7 @@ export default function ViewModal({ status, handleClose }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{selectedUser.company}</DialogTitle>
         <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -41,15 +43,26 @@ export default function ViewModal({ status, handleClose }) {
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Agree</Button>
-        </DialogActions>
+
+        <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image={selectedUser.avatar}
+          alt="green iguana"
+          style={{ height: 230 }}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {selectedUser.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
       </Dialog>
     </React.Fragment>
   );

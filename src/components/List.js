@@ -16,7 +16,7 @@ export default function List({ users, searchedData }) {
 
     return (
         <div>
-            {openPopup && <ViewModal status={openPopup} handleClose={handleClose} />}
+            {openPopup && <ViewModal status={openPopup} handleClose={handleClose} selectedUser={selectedUser} />}
             <div>
                 {users
                 .filter(user => user.name.toLowerCase().startsWith(searchedData?.toLowerCase()))
