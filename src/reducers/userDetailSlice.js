@@ -13,17 +13,6 @@ export const fetchUsers = createAsyncThunk('fetchUsers', async (args, { rejectWi
     }
 })
 
-// Get a user
-export const fetchUser = createAsyncThunk('fetchUser', async (id, { rejectWithValue }) => {
-    const response = await fetch(`${API_URL}/${id}`);
-    try {
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
 // Delete a user
 export const deleteUser = createAsyncThunk('deleteUser', async (id, { rejectWithValue }) => {
     const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
@@ -120,19 +109,6 @@ export const userDetailSlice = createSlice({
             state.loading = false;
             state.error = action.payload
         })
-
-        builder.addCase(fetchUser.pending, (state, action) => {
-            state.loading = true;
-        })
-        builder.addCase(fetchUser.fulfilled, (state, action) => {
-            state.loading = false;
-            state.user = action.payload
-        })
-        builder.addCase(fetchUser.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload
-        })
-
         builder.addCase(updateUser.pending, (state, action) => {
             state.loading = true;
         })
